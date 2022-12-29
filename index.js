@@ -12,6 +12,8 @@ app.get('/', function (req, res) {
 //api routes
 app.use('/api', require('./apis/authenticationApi'));
 app.use('/api', require('./apis/postsApi'));
+app.use('/api', require('./apis/products'));
+app.use('/api', require('./apis/storeApi'));
 
 
 var server = app.listen(parseInt(process.env.PORT) || 3000, function () {

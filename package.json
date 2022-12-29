@@ -1,5 +1,5 @@
 {
-  "name": "backendtemp",
+  "name": "backend",
   "version": "1.0.0",
   "description": "Templet for backend servers",
   "main": "index.js",
@@ -10,7 +10,7 @@
   "author": "bharath",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^4.6.1",
+    "@prisma/client": "^4.8.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1"
   },
@@ -21,5 +21,13 @@
     "prisma": "^4.6.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BharathKumar-99/coffee_app_backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BharathKumar-99/coffee_app_backend/issues"
+  },
+  "homepage": "https://github.com/BharathKumar-99/coffee_app_backend#readme"
 }

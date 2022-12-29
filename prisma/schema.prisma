@@ -38,3 +38,29 @@ model Profile {
   user   User   @relation(fields: [userId], references: [id])
   userId Int    @unique
 }
+
+model Products {
+  pid          Int     @id @default(autoincrement())
+  name         String
+  pic          String
+  store        Store   @relation(fields: [storeId], references: [id])
+  storeId      Int
+  price        String
+  discount     String
+  quantity     Int
+  isOnlineSale Boolean
+}
+
+model Store {
+  id             Int        @id @default(autoincrement())
+  name           String
+  Products       Products[]
+  longitude      String
+  latetude       String
+  rating         Int
+  phone          String
+  email          String
+  address        String
+  showOutOfStock Boolean
+  isOnline       Boolean
+}
