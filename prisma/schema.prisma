@@ -40,19 +40,22 @@ model Profile {
 }
 
 model Products {
-  pid          Int     @id @default(autoincrement())
+  pid          Int        @id @default(autoincrement())
   name         String
   pic          String
-  store        Store   @relation(fields: [storeId], references: [id])
+  store        Store      @relation(fields: [storeId], references: [id])
   storeId      Int
   price        String
   discount     String
   quantity     Int
   isOnlineSale Boolean
+  categoriesId Int
+  Categories   Categories @relation(fields: [categoriesId], references: [id])
+  createdAt    DateTime   @default(now())
 }
 
 model Store {
-  id             Int        @id @default(autoincrement())
+  id             Int          @id @default(autoincrement())
   name           String
   Products       Products[]
   longitude      String
@@ -60,7 +63,40 @@ model Store {
   rating         Int
   phone          String
   email          String
+  image          String
   address        String
   showOutOfStock Boolean
   isOnline       Boolean
+  Categories     Categories[]
+}
+
+model Categories {
+  id       Int        @id @default(autoincrement())
+  name     String
+  Image    String
+  storeId  Int
+  Store    Store      @relation(fields: [storeId], references: [id])
+  Products Products[]
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  paymentType PaymentType @relation(fields: [paymentId], references: [id])
+  paymentId   Int
+  createdAt   DateTime    @default(now())
+  products    Json
+  statusId    Int
+  status      StatusType  @relation(fields: [statusId], references: [id])
+}
+
+model PaymentType {
+  id    Int     @id @default(autoincrement())
+  name  String
+  Order Order[]
+}
+
+model StatusType {
+  id    Int     @id @default(autoincrement())
+  name  String
+  Order Order[]
 }

@@ -1,4 +1,4 @@
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 // module.exports.getAllProducts = async function getAllPosts(req) {
@@ -31,4 +31,27 @@ module.exports.addStore = async function addStore(req, res) {
         }
     )
     return store
+}
+
+module.exports.getStore = async function getStoreById(id) {
+    try {
+        const products = await prisma.store.findUnique({
+            where: {
+                id: parseInt(id),
+            },
+
+        })
+        return products
+    } catch (e) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            // The .code property can be accessed in a type-safe manner
+            if (e.code === 'P2002') {
+                console.log(
+                    'There is a unique constraint violation, a new user cannot be created with this email'
+                )
+            }
+        }
+        console.log(e);
+        return e
+    }
 }

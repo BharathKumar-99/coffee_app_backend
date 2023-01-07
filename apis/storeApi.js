@@ -14,4 +14,17 @@ app.post('/addstore', async function (req, res) {
     const products = await storeCtrl.addStore(req)
     res.json(products);
 });
+
+app.get('/getonestore', async function (req, res) {
+    const store = await storeCtrl.getStore(req.query.id)
+    if (store == null) {
+        res.json({ 'message': 'Store not found' })
+    } else {
+        res.json({
+            'Data': {
+                store
+            }
+        })
+    }
+});
 module.exports = app;
